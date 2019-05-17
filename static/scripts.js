@@ -5,7 +5,7 @@ $(document).ready(function() {
     var strOut = "";
 
     $('.logoContainer').on('click', function(event) {
-
+        console.log('logo container clicked');
     });
 
     $('.letterBox').on('click', function(event) {
@@ -14,9 +14,9 @@ $(document).ready(function() {
         var letterInBox = $(this).find('h1')[0].innerText;
         //console.log(letterInBox);
         strOut += letterInBox;
+
         let letter = document.createElement("div");
         letter.className = "chosenLetter";
-        letter.textContent = letterInBox;
 
         var squareSelected = event.currentTarget;
         squareSelected.setAttribute("style", "visibility: hidden");

@@ -1,4 +1,86 @@
+
 {% extends "layout.html" %}
+{%  block title %}p1 vs p2{% endblock %}
+
 {% block content %}
-    <p>hérna kemur TwoPlayer</p>
+    <div class="gameContainer">
+        <div class="box1">
+        <p class="gameLang" style="float: right">{{ language }}</p>
+            <div class="logoContainer">
+                <a href="/home"><img alt="logo" src="../static/logo.png" /> </a>
+            </div>
+            <div class="scoreBoard" style="overflow-x: scroll">
+                <div style="height: 50%; overflow: hidden; margin: 10px 15px 0">
+                    <table class="gameScore" style="width: 100%; text-align: center">
+                      <tr>
+                        <th>Player1</th>
+                        <th>Player2</th>
+                      </tr>
+                      {% if scoreList %}
+                        {%  for scorePairs in scoreList.split(':')%}
+                        <tr>
+                                {% for score in scorePairs.split(',')%}
+                                <td>{{score}}</td>
+                                {% endfor %}
+                        </tr>
+                        {% endfor %}
+                      {% endif %}
+                    </table>
+                </div>
+                <div style="margin: 0 15px 10px">
+                    <ul style="list-style: none; width: 50%;float:left">
+                        {%  for word in wordList.split(':')%}
+                            <li>{{word}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul style="list-style: none; width: 50%;float:right">
+                        {% if compWord %}
+                            <li>I found these words</li>
+                            {%  for word in compWord.split(':') %}
+                            <li>{{word}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="gameBoard">
+
+            </div>
+        </div>
+        <div class="box2">
+            <div id="lettersContainer">
+                {% for letter in l %}
+                        <div class="letterBox">
+                        <h1>
+                            {{ letter[0] }}
+                        </h1>
+                            {%   if letter[0] != ' ' %}
+                            <p>
+                                {{ letter[1] }}
+                            </p>
+                            {% endif %}
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <form action="{{url}}" method="POST">
+            <input type="hidden" name="scoreList" value="{{scoreList}}" >
+            <input type="hidden" name="language" value="{{language}}" >
+            <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
+            <input type="hidden" name="wordList" value="{{wordList}}" >
+            <input type="submit" value="GIVE UP">
+        </form>
+
+        <form action="/twoPlayerGame" method="POST">
+            <input type="hidden" name="compWord" value="{{compWord}}" >
+            <input type="hidden" name="scoreList" value="{{scoreList}}" >
+            <input type="hidden" id="userWord" name="userWord" value="" >
+            <input type="hidden" name="language" value="{{language}}" >
+            <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
+            <input type="hidden" name="wordList" value="{{wordList}}" >
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 {% endblock content %}
+
