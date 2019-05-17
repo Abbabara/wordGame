@@ -18,3 +18,11 @@ Rules of icelandic scrabble
 6 points: J x1, Y x1, Ö x1,
 7 points: É x1, Þ x1
 10 points: X x1
+
+íslensk orð héðan:
+https://github.com/nifgraup/hunspell-is
+
+önnur tungumál fengin héðan:
+https://github.com/titoBouzout/Dictionaries
+
+TODO: instructions

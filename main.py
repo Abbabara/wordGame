@@ -64,12 +64,15 @@ def TwoPlayer():
             playerOneScore += int(scores[i][0])
             playerTwoScore += int(scores[i][1])
         if playerOneScore >= playerTwoScore:
-            winner = 'Player One is'
+            winner = 'Player One'
         else:
-            winner = 'Player Two is'
+            winner = 'Player Two'
+        otherPlayer = 'Player Two'
         return render_template('gameOver.html', playerScores=str(playerOneScore)
                                , computerScore=str(playerTwoScore)
-                               , winner=winner)
+                               , winner=winner
+                               , scoreList = scoreList
+                               , otherPlayer = otherPlayer)
 
     randLetters = get_rand_letters(language)
     # random letters from tuple to string
@@ -119,12 +122,15 @@ def playerVsComputer():
             playerScores += int(scores[i][0])
             computerScore += int(scores[i][1])
         if playerScores >= computerScore:
-            winner = 'You are'
+            winner = 'Player'
         else:   
-            winner = 'The Computer is'
+            winner = 'The Computer'
+        otherPlayer = 'The Computer'
         return render_template('gameOver.html', playerScores = str(playerScores)
                                             ,computerScore = str(computerScore)
-                                            ,winner = winner)
+                                            ,winner = winner
+                                            ,scoreList = scoreList
+                                            , otherPlayer = otherPlayer)
 
     randLetters = get_rand_letters(language)
     # random letters from tuple to string
@@ -138,7 +144,7 @@ def playerVsComputer():
                                             ,compWord = compWord)
 
 @app.route("/playerVsComputerGame" , methods = ['GET','POST'])
-def check_word():
+def player_vs_computer_game():
     if request.method == 'POST':
         compWord = request.form['compWord']
         wordList = request.form['wordList']
@@ -147,7 +153,7 @@ def check_word():
         randLettersString = request.form['randLettersString']
         scoreList = request.form['scoreList']
     else:
-        print('VESEN')
+        print('error')
     #TJEKKA HVORT AÐ ORÐIÐ SÉ VALDID
     word = ValidateWord(userWord, language, randLettersString)
     #EF VALID, SENDA ÞAÐ INN Í LISTA
@@ -155,7 +161,6 @@ def check_word():
         if wordList != '':
             wordList += ':'
         wordList += word
-
 
     lettertuples = string_to_tuple(randLettersString, language)
     return render_template('playerVsComputer.html', l=lettertuples, 
@@ -176,7 +181,7 @@ def two_player_game():
         randLettersString = request.form['randLettersString']
         scoreList = request.form['scoreList']
     else:
-        print('VESEN')
+        print('error')
     #TJEKKA HVORT AÐ ORÐIÐ SÉ VALDID
     word = ValidateWord(userWord, language, randLettersString)
     #EF VALID, SENDA ÞAÐ INN Í LISTA

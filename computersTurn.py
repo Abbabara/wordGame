@@ -52,6 +52,5 @@ def computers_turn(language):
 
     word = getting_random_word_for_computer(randLettersString, language)
     # Get value of word
-    print("computer word: " + word)
     wordScore = score_of_word(word.replace(':', ''), language)
     return word, wordScore

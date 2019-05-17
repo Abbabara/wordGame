@@ -4,15 +4,10 @@ $(document).ready(function() {
     var gameField = $('div.gameContainer').find('div.box1');
     var strOut = "";
 
-    $('.logoContainer').on('click', function(event) {
-        console.log('logo container clicked');
-    });
-
     $('.letterBox').on('click', function(event) {
 
         //A letter tile was clicked, getting its letter
         var letterInBox = $(this).find('h1')[0].innerText;
-        //console.log(letterInBox);
         strOut += letterInBox;
 
         let letter = document.createElement("div");
