@@ -100,3 +100,22 @@ body{
 #homeTitle{
     margin: auto;
 }
+
+input[type=submit] {
+  width: 100px;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: solid 1px black;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: lightsteelblue;
+  color: black;
+}
+
+.btnRight {
+    float: right;
+}
+
+.btnLeft {
+    float: left;
+}

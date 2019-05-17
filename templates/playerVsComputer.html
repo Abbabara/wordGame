@@ -64,7 +64,7 @@
             </div>
         </div>
         
-        <form action="{{url}}" method="POST">
+        <form class="btnRight" action="{{url}}" method="POST">
             <input type="hidden" name="scoreList" value="{{scoreList}}" >
             <input type="hidden" name="language" value="{{language}}" >
             <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
@@ -72,7 +72,7 @@
             <input type="submit" value="GIVE UP">
         </form>
 
-        <form action="/playerVsComputerGame" method="POST">
+        <form class="btnLeft" action="/playerVsComputerGame" method="POST">
             <input type="hidden" name="compWord" value="{{compWord}}" >
             <input type="hidden" name="scoreList" value="{{scoreList}}" >
             <input type="hidden" id="userWord" name="userWord" value="" >
