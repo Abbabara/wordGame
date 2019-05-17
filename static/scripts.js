@@ -25,6 +25,7 @@ $(document).ready(function() {
             squareSelected.setAttribute("style", "visibility: block");
             strOut = strOut.slice(0, childIndex) + strOut.slice(childIndex+1);
             $(e.target).remove();
+            userWord.setAttribute("value", strOut);
         };
 
         gameField.find('div.gameBoard').append(letter);
