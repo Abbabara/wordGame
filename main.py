@@ -83,7 +83,21 @@ def playerVsComputer():
     
     game = "/playerVsComputer"
     if scoreList.count(',') == 5:
-        return redirect('/gameOver')
+        scores = (scoreList.split(':'))
+        playerScores = 0
+        computerScore = 0
+        for i in range(len(scores)):
+            scores[i] = scores[i].split(',')
+            playerScores += int(scores[i][0])
+            computerScore += int(scores[i][1])
+        if playerScores >= computerScore:
+            winner = 'You are'
+        else:   
+            winner = 'The Computer is'
+        return render_template('gameOver.html', playerScores = str(playerScores)
+                                            ,computerScore = str(computerScore)
+                                            ,winner = winner)
+
     randLetters = get_rand_letters(language)
     # random letters from tuple to string
     randLettersString = (''.join([i[0] for i in randLetters])).lower()
