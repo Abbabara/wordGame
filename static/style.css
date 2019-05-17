@@ -69,7 +69,8 @@ body{
     text-align: center;
 }
 .scoreBoard{
-    width: 20%;
+    font-family: Arial;
+    width: 25%;
     height: 80%;
     float: left;
     margin-right: 15px;
@@ -77,12 +78,12 @@ body{
 }
 .box1{
     width: 100%;
-    height: 55%;
+    height: 65%;
     background-color: lightblue;
 }
 .box2{
     width: 100%;
-    height: 25%;
+    height: 15%;
     background-color: dodgerblue;
 }
 .chosenLetter{

@@ -7,40 +7,41 @@
         <div class="box1">
             <div class="logoContainer">
                 <a href="/home"><img alt="logo" src="../static/logo.png" /> </a>
+                <p class="gameLang" style="float: right">{{ language }}</p>
             </div>
-
-            <div class="scoreBoard" >
-
-                <table class="gameScore" style="width: 100%; text-align: center; height: 200px">
-
-
-                  <tr>
-                    <th>Player1</th>
-                    <th>Player2</th>
-                  </tr>
-                  {% if scoreList %}
-                    {%  for scorePairs in scoreList.split(':')%}
-                    <tr>
-                            {% for score in scorePairs.split(',')%}
-                            <td>{{score}}</td>
-                            {% endfor %}
-                    </tr>
-                    {% endfor %}
-                  {% endif %}
-                </table>
-                <ul style="list-style: none; width: 50%;float:left">
-                    {%  for word in wordList.split(':')%}
-                        <li>{{word}}</li>
-                    {% endfor %}
-                </ul>
-                <ul style="list-style: none; width: 50%;float:right">
-                    {% if compWord %}
-                        <li>The computer picked:</li>
-                        {%  for word in compWord.split(':') %}
-                        <li>{{word}}</li>
+            <div class="scoreBoard" style="overflow-x: scroll">
+                <div style="height: 50%; overflow: hidden; margin: 10px 15px 0">
+                    <table class="gameScore" style="width: 100%; text-align: center">
+                      <tr>
+                        <th>Player1</th>
+                        <th>Player2</th>
+                      </tr>
+                      {% if scoreList %}
+                        {%  for scorePairs in scoreList.split(':')%}
+                        <tr>
+                                {% for score in scorePairs.split(',')%}
+                                <td>{{score}}</td>
+                                {% endfor %}
+                        </tr>
                         {% endfor %}
-                    {% endif %}
-                </ul>
+                      {% endif %}
+                    </table>
+                </div>
+                <div style="margin: 0 15px 10px">
+                    <ul style="list-style: none; width: 50%;float:left">
+                        {%  for word in wordList.split(':')%}
+                            <li>{{word}}</li>
+                        {% endfor %}
+                    </ul>
+                    <ul style="list-style: none; width: 50%;float:right">
+                        {% if compWord %}
+                            <li>I found these words</li>
+                            {%  for word in compWord.split(':') %}
+                            <li>{{word}}</li>
+                            {% endfor %}
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
             <div class="gameBoard">
 
@@ -48,7 +49,6 @@
         </div>
         <div class="box2">
             <div id="lettersContainer">
-
                 {% for letter in l %}
                         <div class="letterBox">
                         <h1>
