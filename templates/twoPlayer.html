@@ -5,7 +5,7 @@
 {% block content %}
     <div class="gameContainer">
         <div class="box1">
-        <p class="gameLang" style="float: right">{{ language }}</p>
+        <p class="gameLang" style="float: right">{{ language.capitalize() }}</p>
             <div class="logoContainer">
                 <a href="/home"><img alt="logo" src="../static/logo.png" /> </a>
             </div>
@@ -33,14 +33,6 @@
                             <li>{{word}}</li>
                         {% endfor %}
                     </ul>
-                    <ul style="list-style: none; width: 50%;float:right">
-                        {% if compWord %}
-                            <li>I found these words</li>
-                            {%  for word in compWord.split(':') %}
-                            <li>{{word}}</li>
-                            {% endfor %}
-                        {% endif %}
-                    </ul>
                 </div>
             </div>
             <div class="gameBoard">
@@ -64,11 +56,12 @@
             </div>
         </div>
         
-        <form action="{{url}}" method="POST">
+        <form action="/twoPlayer" method="POST">
             <input type="hidden" name="scoreList" value="{{scoreList}}" >
             <input type="hidden" name="language" value="{{language}}" >
             <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
             <input type="hidden" name="wordList" value="{{wordList}}" >
+            <input type="hidden" name="turn" value="{{ turn }}" >
             <input type="submit" value="GIVE UP">
         </form>
 
@@ -79,6 +72,7 @@
             <input type="hidden" name="language" value="{{language}}" >
             <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
             <input type="hidden" name="wordList" value="{{wordList}}" >
+            <input type="hidden" name="turn" value="{{ turn }}" >
             <input type="submit" value="Submit">
         </form>
     </div>

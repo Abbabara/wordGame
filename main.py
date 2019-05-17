@@ -28,32 +28,60 @@ def routingToGame():
 # Game: Two player
 @app.route("/twoPlayer", methods = ['GET','POST'])
 def TwoPlayer():
-    #url = getUrl(url, turn) 
+    # Getting information from url
     if request.method == 'POST':
-        userWord = request.form['userWord']
         language = request.form['language']
         randLettersString = request.form['randLettersString']
+        wordList = request.form['wordList']
+        scoreList = request.form['scoreList']
+        score = score_of_word(wordList.replace(':', ''), language)
+
+        turn = request.form['turn']
+        # comp turn
+        compWord = computers_turn(language)
+        if turn == '1':
+            if scoreList:
+                scoreList += ':'
+            scoreList += str(score)
+            turn = '2'
+        else:
+            scoreList += ',' + str(score)
+            turn = '1'
     else:
-        # Getting information from url
-        userWord = request.args.get('userWord')
+        turn = '1'
+        scoreList = ''
+        userWord = None
         language = request.args.get('language')
-        randLettersString = request.args.get('randLettersString')
-    turn = request.args.get('turn')
+        randLettersString = request.args.get('randLetterString')
+
     game = "/twoPlayer"
+    if scoreList.count(',') == 5:
+        scores = (scoreList.split(':'))
+        playerOneScore = 0
+        playerTwoScore = 0
+        for i in range(len(scores)):
+            scores[i] = scores[i].split(',')
+            playerOneScore += int(scores[i][0])
+            playerTwoScore += int(scores[i][1])
+        if playerOneScore >= playerTwoScore:
+            winner = 'Player One is'
+        else:
+            winner = 'Player Two is'
+        return render_template('gameOver.html', playerScores=str(playerOneScore)
+                               , computerScore=str(playerTwoScore)
+                               , winner=winner)
 
-    infoFromTurn = PlayerTurn(userWord, language, turn, game, randLettersString)
+    randLetters = get_rand_letters(language)
+    # random letters from tuple to string
 
-    if infoFromTurn[3] == 'invalidUserWord':
-        lettertuples = string_to_tuple(randLettersString, language)
-    else:
-        # List of the random letters
-        randLettersList = [i[0] for i in infoFromTurn[1]]
-        # random letters from tuple to string
-        randLettersString = (''.join(randLettersList)).lower()
-        # print("letters: ", randLettersListForComputer, " word: ", randPcString, " score: ", wordScore)
-        lettertuples = infoFromTurn[1]
-    return render_template('playerVsComputer.html', l=lettertuples, url=infoFromTurn[0], score = infoFromTurn[2], language = language, randLettersString = randLettersString)
-
+    randLettersString = (''.join([i[0] for i in randLetters])).lower()
+    return render_template('twoPlayer.html', l=randLetters,
+                           url=game,
+                           language=language,
+                           randLettersString=randLettersString
+                           , wordList=''
+                           , scoreList=scoreList
+                           , turn = turn)
 
 
 @app.route("/playerVsComputer", methods = ['GET','POST'])
@@ -137,6 +165,35 @@ def check_word():
                                             ,wordList = wordList
                                             ,scoreList = scoreList
                                             ,compWord = compWord)
+
+@app.route("/twoPlayerGame" , methods = ['GET','POST'])
+def two_player_game():
+    if request.method == 'POST':
+        wordList = request.form['wordList']
+        userWord = request.form['userWord']
+        language = request.form['language']
+        turn = request.form['turn']
+        randLettersString = request.form['randLettersString']
+        scoreList = request.form['scoreList']
+    else:
+        print('VESEN')
+    #TJEKKA HVORT AÐ ORÐIÐ SÉ VALDID
+    word = ValidateWord(userWord, language, randLettersString)
+    #EF VALID, SENDA ÞAÐ INN Í LISTA
+    if word != '' and word not in wordList.split(':'):
+        if wordList != '':
+            wordList += ':'
+        wordList += word
+
+
+    lettertuples = string_to_tuple(randLettersString, language)
+    return render_template('twoPlayer.html', l=lettertuples,
+                                            url = '/playerVsComputer',
+                                            language = language,
+                                            randLettersString = randLettersString
+                                            ,wordList = wordList
+                                            ,scoreList = scoreList
+                                            ,turn = turn)
 
 @app.route("/gameOver")
 def gameOver():

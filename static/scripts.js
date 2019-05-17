@@ -17,6 +17,7 @@ $(document).ready(function() {
 
         let letter = document.createElement("div");
         letter.className = "chosenLetter";
+        letter.innerText = letterInBox;
 
         var squareSelected = event.currentTarget;
         squareSelected.setAttribute("style", "visibility: hidden");

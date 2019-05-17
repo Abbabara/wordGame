@@ -5,16 +5,16 @@
 {% block content %}
     <div class="gameContainer">
         <div class="box1">
-        <p class="gameLang" style="float: right">{{ language.capitalize() }}</p>
+        <p class="gameLang" style="position: absolute; float: right">{{ language.capitalize() }}</p>
             <div class="logoContainer">
-                <a href="/home"><img alt="logo" src="../static/logo.png" /> </a>
+                <a href="/home"><img style="padding-top: 15px; margin-bottom: -15px" alt="logo" src="../static/logo.png" /> </a>
             </div>
-            <div class="scoreBoard" style="overflow-x: scroll">
+            <div class="scoreBoard" style="overflow-y: auto">
                 <div style="height: 50%; overflow: hidden; margin: 10px 15px 0">
                     <table class="gameScore" style="width: 100%; text-align: center">
                       <tr>
-                        <th>Player1</th>
-                        <th>Player2</th>
+                        <th>Player</th>
+                        <th>Computer</th>
                       </tr>
                       {% if scoreList %}
                         {%  for scorePairs in scoreList.split(':')%}
