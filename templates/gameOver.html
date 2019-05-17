@@ -2,9 +2,15 @@
 
 {% block content %}
     <div class="homeScreen">
-        <p>you are a loser my friend</p>
+        <h1>End of game</h1>
+        <h3> {{winner}} the winner of the game!</h3>
+        <p>You got {{playerScores}}, and Computer got {{computerScore}} </p>
         <form action="/">
             <input type="submit" title="Go Home" value="Go Home">
         </form>
     </div>
 {% endblock content %} 
+
+<!-- playerScores = str(playerScores)
+,computerScore = str(computerScore)
+,winner = winner) -->
