@@ -6,7 +6,7 @@
         <h3> {{winner}} is the winner of the game!</h3>
         <br><br>
         <h3>final scores:</h3>
-        <table class="gameScore">
+        <table class="endScore">
             <tr>
                 <th>Player One</th>
                 <th>{{otherPlayer}}</th>
@@ -19,7 +19,7 @@
                     {% endfor %}
                 </tr>
                 {% endfor %}
-                <tr style="font-weight: bold">
+                <tr>
                     <td>{{playerScores}}</td>
                     <td>{{computerScore}}</td>
                 </tr>
