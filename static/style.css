@@ -18,7 +18,6 @@ body{
     width: 100%;
     display: table;
 }
-
 #logoContainer{
     display: flex;
     background-color: whitesmoke;
@@ -28,7 +27,6 @@ body{
     align-items: center;
     text-align: center;
 }
-
 .homeScreen{
     margin: 50px auto;
     text-align: center;
@@ -80,7 +78,6 @@ body{
     align-items: center;
     height: 100%;
 }
-
 .letterBox{
     width: 80px;
     height: 75px;
@@ -104,26 +101,29 @@ body{
 }
 .gameScore {
     height: 50%;
-    margin: 10px 15px 0
+    margin: 10px 15px 0;
+    text-align: center;
 }
 .gameScore table{
     width: 100%;
-    text-align: center
 }
 .gameWords {
-    margin: 0 15px 10px
+    margin: 0 15px 10px;
+    text-align: center;
+}
+.gameWords div {
+    padding-bottom: 10px;
 }
 .gameWords ul {
     list-style: none;
     width: 50%;
 }
 .gameWords ul:first-of-type {
-    float:left
+    float:left;
 }
 .gameWords ul:nth-of-type(2) {
     float: right;
 }
-
 #box1{
     width: 100%;
     height: 65%;

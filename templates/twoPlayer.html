@@ -20,7 +20,7 @@
                         {%  for scorePairs in scoreList.split(':')%}
                         <tr>
                                 {% for score in scorePairs.split(',')%}
-                                <td>{{score}}</td>
+                                    <td>{{ score }}</td>
                                 {% endfor %}
                         </tr>
                         {% endfor %}
@@ -28,6 +28,13 @@
                     </table>
                 </div>
                 <div class="gameWords">
+                    <div>
+                        {% if turn == '1' %}
+                            <h3>Player One Turn</h3>
+                        {% else %}
+                            <h3>Player Two Turn</h3>
+                        {% endif %}
+                    </div>
                     <ul>
                         {%  for word in wordList.split(':')%}
                             <li>{{word}}</li>
