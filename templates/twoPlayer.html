@@ -3,34 +3,41 @@
 {%  block title %}p1 vs p2{% endblock %}
 
 {% block content %}
-    <div class="gameContainer">
-        <div class="box1">
-        <p class="gameLang" style="position: absolute; float: right">{{ language.capitalize() }}</p>
-            <div class="logoContainer">
-                <a href="/home"><img style="padding-top: 15px; margin-bottom: -15px" alt="logo" src="../static/logo.png" /> </a>
+    <div id="gameContainer">
+        <div id="box1">
+            <p>{{ language.capitalize() }}</p>
+            <div id="logoContainer">
+                <a href="/home"><img alt="logo" src="../static/logo.png" /> </a>
             </div>
-            <div class="scoreBoard" style="overflow-y: auto">
-                <div style="height: 50%; overflow: hidden; margin: 10px 15px 0">
-                    <table class="gameScore" style="width: 100%; text-align: center">
+            <div class="scoreBoard">
+                <div class="gameScore">
+                    <table>
                       <tr>
                         <th>Player1</th>
                         <th>Player2</th>
                       </tr>
                       {% if scoreList %}
-                        {%  for scorePairs in scoreList.split(':')%}
+                        {%  for scorePairs in scoreList.split(':') %}
                         <tr>
-                                {% for score in scorePairs.split(',')%}
-                                <td>{{score}}</td>
-                                {% endfor %}
+                            {% for score in scorePairs.split(',') %}
+                                <td>{{ score }}</td>
+                            {% endfor %}
                         </tr>
                         {% endfor %}
                       {% endif %}
                     </table>
                 </div>
-                <div style="margin: 0 15px 10px">
-                    <ul style="list-style: none; width: 50%;float:left">
-                        {%  for word in wordList.split(':')%}
-                            <li>{{word}}</li>
+                <div class="gameWords">
+                    <div>
+                        {% if turn == '1' %}
+                            <h3>Player One Turn</h3>
+                        {% else %}
+                            <h3>Player Two Turn</h3>
+                        {% endif %}
+                    </div>
+                    <ul>
+                        {% for word in wordList.split(':') %}
+                            <li>{{ word }}</li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -39,17 +46,13 @@
 
             </div>
         </div>
-        <div class="box2">
+        <div id="box2">
             <div id="lettersContainer">
                 {% for letter in l %}
                         <div class="letterBox">
-                        <h1>
-                            {{ letter[0] }}
-                        </h1>
-                            {%   if letter[0] != ' ' %}
-                            <p>
-                                {{ letter[1] }}
-                            </p>
+                        <h1>{{letter[0] }}</h1>
+                            {% if letter[0] != ' ' %}
+                                <h3>{{letter[1]}}</h3>
                             {% endif %}
                         </div>
                 {% endfor %}
@@ -61,7 +64,7 @@
             <input type="hidden" name="language" value="{{language}}" >
             <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
             <input type="hidden" name="wordList" value="{{wordList}}" >
-            <input type="hidden" name="turn" value="{{ turn }}" >
+            <input type="hidden" name="turn" value="{{turn}}" >
             <input type="submit" value="GIVE UP">
         </form>
 
@@ -72,7 +75,7 @@
             <input type="hidden" name="language" value="{{language}}" >
             <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
             <input type="hidden" name="wordList" value="{{wordList}}" >
-            <input type="hidden" name="turn" value="{{ turn }}" >
+            <input type="hidden" name="turn" value="{{turn}}" >
             <input type="submit" value="Submit">
         </form>
     </div>

@@ -93,3 +93,10 @@ def string_to_tuple(letters, language):
         i = i.upper()
         temp.append(tuple((i, score_of_letter(i, language))))
     return temp
+
+def ValidateWord(userWord, language, randLettersString):
+    #EF það er búið að setja inn eitthvað orð
+    if userWord and not check_if_valid(userWord.lower(), language):
+        userWord = ''
+    return userWord
+

@@ -8,7 +8,7 @@ def getting_random_word_for_computer(letters, language):
             with open('./dictionary/icelandicWords.txt', 'r', encoding='UTF-8') as f:
                 words = f.read().split() 
         elif language == "danish":
-            with open('./dictionary/danishhWords.txt', 'r', encoding='UTF-8') as f:
+            with open('./dictionary/danishWords.txt', 'r', encoding='UTF-8') as f:
                 words = f.read().split()
         else:
             with open('./dictionary/englishWords.txt', 'r', encoding='UTF-8') as f:
@@ -52,6 +52,5 @@ def computers_turn(language):
 
     word = getting_random_word_for_computer(randLettersString, language)
     # Get value of word
-    print("computer word: " + word)
     wordScore = score_of_word(word.replace(':', ''), language)
     return word, wordScore

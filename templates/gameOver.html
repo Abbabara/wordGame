@@ -1,16 +1,32 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <div class="homeScreen">
+    <div class="endScreen">
         <h1>End of game</h1>
-        <h3> {{winner}} the winner of the game!</h3>
-        <p> Player One got {{playerScores}}, and Player Two got {{computerScore}} </p>
-        <form action="/">
+        <h3> {{winner}} is the winner of the game!</h3>
+        <br><br>
+        <h3>final scores:</h3>
+        <table class="endScore">
+            <tr>
+                <th>Player One</th>
+                <th>{{otherPlayer}}</th>
+            </tr>
+            {% if scoreList %}
+                {%  for scorePairs in scoreList.split(':')%}
+                <tr>
+                    {% for score in scorePairs.split(',')%}
+                    <td>{{score}}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>{{playerScores}}</td>
+                    <td>{{computerScore}}</td>
+                </tr>
+            {% endif %}
+        </table>
+        <form action="/home">
             <input type="submit" title="Go Home" value="Go Home">
         </form>
     </div>
 {% endblock content %} 
-
-<!-- playerScores = str(playerScores)
-,computerScore = str(computerScore)
-,winner = winner) -->
