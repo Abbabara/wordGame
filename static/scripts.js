@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //Get existing url
+
     var userWord = document.getElementById("userWord")
     var gameField = $('div#gameContainer').find('div#box1');
     var strOut = "";

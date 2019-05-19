@@ -60,11 +60,14 @@ def Two_player():
             score = score.split(',')
             playerOneScore += int(score[0])
             playerTwoScore += int(score[1])
-        if playerOneScore >= playerTwoScore:
+        if playerOneScore > playerTwoScore:
             winner = 'Player One'
-        else:
+        elif playerTwoScore > playerOneScore:
             winner = 'Player Two'
+        else:
+            winner = 'No one'
         otherPlayer = 'Player Two'
+
         return render_template('gameOver.html'
                                 ,playerScores = str(playerOneScore)
                                 ,computerScore = str(playerTwoScore)

@@ -33,8 +33,17 @@ body{
     color: whitesmoke;
     padding-top: 60px;
     width: 400px;
-    height: 290px;
+    height: auto;
     background-color: darkslateblue;
+}
+
+.instructions{
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: auto;
+    padding-top: 25px;
+    padding-bottom: 50px;
 }
 .endScreen{
     margin: 50px auto;
@@ -100,7 +109,7 @@ body{
     overflow-y: auto
 }
 .gameScore {
-    height: 50%;
+    height: 130px;
     margin: 10px 15px 0;
     text-align: center;
 }
