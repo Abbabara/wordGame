@@ -52,15 +52,14 @@ def Two_player():
         language = request.args.get('language')
         randLettersString = request.args.get('randLetterString')
 
-    game = "/twoPlayer"
     if scoreList.count(',') == 5:
         scores = (scoreList.split(':'))
         playerOneScore = 0
         playerTwoScore = 0
-        for i in range(len(scores)):
-            scores[i] = scores[i].split(',')
-            playerOneScore += int(scores[i][0])
-            playerTwoScore += int(scores[i][1])
+        for score in scores:
+            score = score.split(',')
+            playerOneScore += int(score[0])
+            playerTwoScore += int(score[1])
         if playerOneScore >= playerTwoScore:
             winner = 'Player One'
         else:
@@ -85,7 +84,6 @@ def Two_player():
                                 ,scoreList = scoreList
                                 ,turn = turn)
 
-
 @app.route("/playerVsComputer", methods = ['GET','POST'])
 def player_vs_computer():
     # Getting information from url
@@ -107,11 +105,10 @@ def player_vs_computer():
     else:
         compWord = ''
         scoreList=''
-        userWord = None
+        userWord = ''
         language = request.args.get('language')
         randLettersString = request.args.get('randLetterString')
     
-    game = "/playerVsComputer"
     if scoreList.count(',') == 5:
         scores = (scoreList.split(':'))
         playerScores = 0

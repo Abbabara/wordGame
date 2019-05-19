@@ -19,9 +19,9 @@
                       {% if scoreList %}
                         {%  for scorePairs in scoreList.split(':')%}
                         <tr>
-                                {% for score in scorePairs.split(',')%}
-                                <td>{{score}}</td>
-                                {% endfor %}
+                            {% for score in scorePairs.split(',')%}
+                            <td>{{score}}</td>
+                            {% endfor %}
                         </tr>
                         {% endfor %}
                       {% endif %}
@@ -37,12 +37,10 @@
                         {% if compWord %}
                             {% if language ==  'icelandic' %}
                                 <li>Ég fann þessi orð</li>
+                            {% elif language ==  'english'%}
+                                <li>I found these words</li>
                             {% else %}
-                                {% if language ==  'english' %}
-                                    <li>I found these words</li>
-                                {% else %}
-                                    <li>Jeg fandt disse ord</li>
-                                {% endif %}
+                                <li>Jeg fandt disse ord</li>
                             {% endif %}
                             {%  for word in compWord.split(':') %}
                                 <li>{{word}}</li>
@@ -57,22 +55,18 @@
         </div>
         <div id="box2">
             <div id="lettersContainer">
-                {% for letter in l %}
-                        <div class="letterBox">
-                        <h1>
-                            {{ letter[0] }}
-                        </h1>
-                            {%   if letter[0] != ' ' %}
-                            <h3>
-                                {{ letter[1] }}
-                            </h3>
-                            {% endif %}
-                        </div>
-                {% endfor %}
+            {% for letter in l %}
+                <div class="letterBox">
+                <h1>{{ letter[0] }}</h1>
+                {%   if letter[0] != ' ' %}
+                    <h3>{{ letter[1] }}</h3>
+                {% endif %}
+                </div>
+            {% endfor %}
             </div>
         </div>
         
-        <form class="btnRight" action="{{url}}" method="POST">
+        <form class="btnRight" action="/playerVsComputer" method="POST">
             <input type="hidden" name="scoreList" value="{{scoreList}}" >
             <input type="hidden" name="language" value="{{language}}" >
             <input type="hidden" name="randLettersString" value="{{randLettersString}}" >
